@@ -30,7 +30,6 @@ RUN apk add --no-cache chromium git python3 py3-pip make g++ build-base cairo-de
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 COPY --from=build /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=build /usr/local/bin /usr/local/bin
-RUN chown -R node:node /usr/local/lib/node_modules /usr/local/bin
 COPY railway-entrypoint.sh /usr/local/bin/railway-entrypoint.sh
 RUN chmod 0755 /usr/local/bin/railway-entrypoint.sh
 EXPOSE 3000
