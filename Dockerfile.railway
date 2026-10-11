@@ -6,6 +6,9 @@ FROM node:${NODE_VERSION}-alpine AS build
 
 RUN apk add --no-cache git python3 py3-pip make g++ build-base cairo-dev pango-dev
 ENV PUPPETEER_SKIP_DOWNLOAD=true
+# Alpine native modules must use the headers bundled with the Node image;
+# fetching them from unofficial-builds.nodejs.org is unreliable in Railway.
+ENV npm_config_nodedir=/usr/local
 
 ARG FLOWISE_VERSION=3.1.4
 RUN npm install -g "flowise@${FLOWISE_VERSION}" \
